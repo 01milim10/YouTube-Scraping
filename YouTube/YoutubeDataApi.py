@@ -1,26 +1,31 @@
-import googleapiclient.discovery
-import pprint, json, time
-import pandas as pd
+##Importing libraries
+import googleapiclient.discovery ##Library that helps us to use youtube data api v3
+import pprint, json, time ##pretty print in the console; json file handler; 
+import pandas as pd ##manipulate and save the data in desire file format
 
+##Credentials required to authorize with youtube data api
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = "AIzaSyBighmBrEqkN4wkPGIhv_9zC9eQm1pf7nc"
-video_id = "TATSAHJKRd8"
+DEVELOPER_KEY = "AIzaSyBighmBrEqkN4wkPGIhv_9zC9eQm1pf7nc" ##Api key from youtube developer console
+video_id = "TATSAHJKRd8" ##id of the video to scrape comments from 
 
-youtube = googleapiclient.discovery.build(
-api_service_name, api_version, developerKey = DEVELOPER_KEY)
-months = ['Jan','Feb','Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey = DEVELOPER_KEY) ##create variable that helps us to access youtube data api endpoints
 
+months = ['Jan','Feb','Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] ##Array of Month Names
+
+##The main function where the code starts running
 def main():
+    ##Create a request to send to the youtube data api
     request = youtube.commentThreads().list(
         part="snippet, replies",
         videoId=video_id,
         maxResults=100)
         
-    response = request.execute()
+    response = request.execute() ##Execute the request and save the response in response variable
     
+    ##create a document named results-raw.json and open in write mode with utf-8 character encoding
     file = open('results-raw.json', 'w', encoding='utf-8')
-    file.write(json.dumps(response, ensure_ascii=False, indent=4))
+    file.write(json.dumps(response, ensure_ascii=False, indent=4)) ##write the response as a json string in results-raw.json
     
     all_comments = response.get('items')
     
