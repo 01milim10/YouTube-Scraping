@@ -1,0 +1,49 @@
+[
+    {
+        "name": "John Doe",
+        "courses": [
+            {
+                "score": 76,
+                "course": "Science"
+            },
+            {
+                "score": 96,
+                "course": "Maths"
+            },
+            {
+                "score": 68,
+                "course": "Nepali"
+            }
+        ]
+    }
+]
+
+[
+    {
+        "name": "John Doe",
+        "courses": [
+            {
+                "score": 76,
+                "course": "Science"
+            }
+        ]
+    },
+    {
+        "name": "John Doe",
+        "courses": [
+            {
+                "score": 96,
+                "course": "Maths"
+            }
+        ]
+    },
+    {
+        "name": "John Doe",
+        "courses": [
+            {
+                "score": 76,
+                "course": "Science"
+            }
+        ]
+    }
+]
